@@ -30,6 +30,9 @@ public class Order implements Serializable {
     @JoinColumn(name = "client_id")
     private User client;
 
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items = new HashSet<>();
+
     public Order() {
     }
 
@@ -39,9 +42,6 @@ public class Order implements Serializable {
         setOrderStatus(orderStatus);
         this.client = client;
     }
-
-    @OneToMany(mappedBy = "id.order")
-    private Set<OrderItem> items = new HashSet<>();
 
     public Long getId() {
         return id;
